@@ -1,22 +1,31 @@
 #include "monty.h"
 
 /**
- * add_nodes - Adds the top two elements of the stack.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @line_number: Integer representing the line number of of the opcode.
+ * f_pstr - prints the string starting at the top of the stack,
+ * followed by a new line.
+ * @stack: double pointer to the head of the stack
+ * @line_number: line number being executed
+ *
+ * Description: The string is printed starting from the top of the stack
+ * with the character at the top of the stack printed first, followed by
+ * the rest of the characters up to the stack's top. The string will only
+ * be printed if all of the following conditions are met:
+ * - The stack is not empty.
+ * - The stack contains only ASCII characters, ending with 0.
  */
-void add_nodes(stack_t **stack)
+void f_pstr(stack_t **stack, unsigned int line_number)
 {
-    int sum;
+    stack_t *temp = *stack;
 
-    if (stack == NULL || *stack == NULL || (*stack)->next == NULL) {
-        printf("Error\n");
-        return; // Exit function if conditions are not met
+    (void)line_number;
+
+    while (temp && temp->n != 0)
+    {
+        if (temp->n >= 0 && temp->n <= 127)
+            putchar(temp->n);
+        else
+            break;
+        temp = temp->next;
     }
-
-    (*stack) = (*stack)->next;
-    sum = (*stack)->n + (*stack)->prev->n;
-    (*stack)->n = sum;
-    free((*stack)->prev);
-    (*stack)->prev = NULL;
+    putchar('\n');
 }

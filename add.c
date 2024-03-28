@@ -1,5 +1,5 @@
 #include "monty.h"
-#include <stdio.h> // Include the necessary header for fclose()
+#include <stdio.h> /* Include the necessary header for fclose() */
 
 /**
  * f_add - adds the top two elements of the stack.
@@ -21,8 +21,6 @@ void f_add(stack_t **head, unsigned int counter)
         if (len < 2)
         {
                 fprintf(stderr, "L%d: can't add, stack too short\n", counter);
-                // Remove the following line since bus is undeclared and not used
-                // fclose(bus.file);
                 free(bus.content);
                 free_stack(*head);
                 exit(EXIT_FAILURE);
@@ -33,3 +31,4 @@ void f_add(stack_t **head, unsigned int counter)
         *head = h->next;
         free(h);
 }
+
